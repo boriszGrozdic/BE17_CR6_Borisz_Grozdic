@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Events{% endblock %}
+
+{% block body %}
+    
+    <div class="container d-flex justify-content-around"> 
+       
+    
+            {% for event in events %}
+            
+            <div class="card" style="width: 18rem; ">
+                <img src="{{ event.picture }}" class="card-img-top h-25" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.name }}</h5>
+                    <p class="card-text">{{ event.description }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ event.dateTime ? event.dateTime|date('Y-m-d H:i:s') : '' }}</li>
+                    <li class="list-group-item">{{ event.capacity }}</li>
+                    <li class="list-group-item">{{ event.email }}</li>
+                    <li class="list-group-item">{{ event.phone }}</li>
+                    <li class="list-group-item">{{ event.address }}</li>
+                   <a class="text-decoration-none" href="{{ event.url }}"><li class="list-group-item">Click on URL</li></a>
+                    <li class="list-group-item">{{ event.type }}</li>
+                </ul>
+                <div class="card-body">
+                    <a class="text-decoration-none btn btn-primary" href="{{ path('app_event_show', {'id': event.id}) }}" class="card-link ">Show</a>
+                    <a class="text-decoration-none btn btn-warning" href="{{ path('app_event_edit', {'id': event.id}) }}" class="card-link">Edit</a>
+                </div>
+                </div>
+                
+                {% endfor %}
+                
+            
+</div>
+        
+
+    
+{% endblock %}
